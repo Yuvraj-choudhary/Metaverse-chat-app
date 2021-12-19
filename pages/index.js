@@ -3,6 +3,7 @@ import Login from "../components/Login";
 import { useMoralis } from "react-moralis";
 import Loading from "../components/Loading";
 import Header from "../components/Header";
+import Messages from "../components/Messages";
 
 export default function Home() {
   const { isAuthenticated, isInitializing } = useMoralis();
@@ -12,7 +13,10 @@ export default function Home() {
   if (isInitializing) return <Loading />;
 
   return (
-    <div className="h-screen">
+    <div
+      className="h-screen overflow-y-auto bg-gradient-to-b
+    from-black to-fuchsia-900 overflow-hidden"
+    >
       <Head>
         <title>Metaverse-ChatApp</title>
         <link
@@ -20,8 +24,10 @@ export default function Home() {
           href="https://cryptologos.cc/logos/chatcoin-chat-logo.png"
         />
       </Head>
-      <Header />
-     
+      <div className="max-w-screen-2xl mx-auto">
+        <Header />
+        <Messages />
+      </div>
     </div>
   );
 }
