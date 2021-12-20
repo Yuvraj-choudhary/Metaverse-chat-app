@@ -23,7 +23,13 @@ function Messages() {
         ))}
       </div>
       <div className="flex justify-center">
-        <SendMessage endOfMessageRef={endOfMessageRef} />
+        {data.map((message) => (
+          <SendMessage
+            endOfMessageRef={endOfMessageRef}
+            key={message.id}
+            messages={message}
+          />
+        ))}
       </div>
       <div ref={endOfMessageRef} className="text-center text-gray-400 mt-5">
         <p>You are up to date {user.getUsername()} 🎉</p>

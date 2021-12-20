@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useMoralis } from "react-moralis";
 
-function SendMessage({ endOfMessageRef }) {
+function SendMessage({ endOfMessageRef, messages }) {
   const { user, Moralis } = useMoralis();
   const [message, setMessage] = useState("");
 
-  var audio = new Audio("notification.mp3");
+  const isUserMessage = messages.get("ethAddress") === user.get("ethAddress");
+
+  const audio = new Audio(
+    "https://vincens2005.github.io/vr/Nyan%20Cat%20[original].mp3"
+  );
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -32,11 +36,14 @@ function SendMessage({ endOfMessageRef }) {
     });
 
     setMessage("");
-    audio.play();
+
+    if (!isUserMessage) {
+      audio.play();
+    }
   };
 
   return (
-    <form className="flex w-11/12 fixed bottom-10 bg-black opacity-75 px-6 py-4 max-w-2xl border-blue-400 z-50 rounded-full border-4 shadow-xl">
+    <form className="flex w-11/12 fixed bottom-10 bg-black opacity-75 px-6 py-4 max-w-2xl border-blue-400 z-50 rounded-full border-4 shadow">
       <input
         className="flex-grow outline-none bg-transparent text-white placeholder-gray-500 pr-5"
         type="text"
