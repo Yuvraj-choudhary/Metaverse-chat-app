@@ -5,6 +5,8 @@ function SendMessage({ endOfMessageRef }) {
   const { user, Moralis } = useMoralis();
   const [message, setMessage] = useState("");
 
+  var audio = new Audio("notification.mp3");
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -30,6 +32,7 @@ function SendMessage({ endOfMessageRef }) {
     });
 
     setMessage("");
+    audio.play();
   };
 
   return (
